@@ -1,0 +1,107 @@
+Here are some sample Java code snippets you can copy and paste into the React frontend to test the AI Mentor.
+
+---
+
+### Test 1: Two Sum (Common Error - Array Out Of Bounds / Inefficient)
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i <= nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
+```
+*Expected AI response: It should point out the `i <= nums.length` which causes an `ArrayIndexOutOfBoundsException`, and might suggest using a HashMap for better time complexity (O(N)).*
+
+---
+
+### Test 2: Reverse Linked List (Common Error - Broken Links/Infinite Loop)
+
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            // Forgot to advance 'curr', this will cause an infinite loop!
+        }
+        return prev;
+    }
+}
+```
+*Expected AI response: It should catch that `curr` is never updated to `nextTemp` at the end of the while loop.*
+
+---
+
+### Test 3: Valid Parentheses (Common Error - Stack underflow / Type mismatch)
+
+```java
+import java.util.Stack;
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                char top = stack.pop(); // What if the stack is completely empty here?
+                if (c == ')' && top != '(') return false;
+                if (c == '}' && top != '{') return false;
+                if (c == ']' && top != '[') return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+```
+*Expected AI response: It should notice that popping from an empty stack will throw an `EmptyStackException`. A guard condition `if (stack.isEmpty()) return false;` is needed before popping.*
+
+---
+
+### Test 4: Maximum Subarray (Python/Global RAG Test - Incorrect Kadane's Algorithm)
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        current_sum = 0
+        max_sum = 0 # Bug: What if all numbers are negative?
+        
+        for num in nums:
+            current_sum += num
+            if current_sum > max_sum:
+                max_sum = current_sum
+            if current_sum < 0:
+                current_sum = 0
+                
+        return max_sum
+```
+*Expected AI response: The AI (assisted by the Global Dataset) should recommend initializing `max_sum = float('-inf')` or `max_sum = nums[0]` to handle cases where the array contains ONLY negative integers.*
+
+---
+
+### Test 5: Merge Intervals (Python/Global RAG Test - Missing Sort)
+
+```python
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        merged = []
+        # intervals.sort(key=lambda x: x[0])  # Bug: Forgot to sort!
+        for interval in intervals:
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        return merged
+```
+*Expected AI response: The Mentor should immediately point out that the `intervals` array must be sorted by the start times before attempting to iterate and merge overlapping regions.*

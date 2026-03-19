@@ -1,0 +1,25 @@
+# Environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Data & Databases
+backend/data/
+data/
+Dataset/
+submissions.json
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+
+# Environment Variables
+.env
+**/.env
+*.env
+
+# OS Files
+.DS_Store
