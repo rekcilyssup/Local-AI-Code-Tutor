@@ -4,17 +4,17 @@ LeetMentor is a privacy-first, local AI coding assistant that uses Retrieval-Aug
 
 It completely decouples from cloud APIs by running **Ollama** locally for both text generation (e.g., `llama3.1:8b`) and text embeddings (`nomic-embed-text`), utilizing **ChromaDB** for blazing-fast vector storage.
 
-## ✨ Features
+## Features
 - **Dual-RAG Memory**: Instantly toggle your AI's brain between your own personal LeetCode submission history and a massive Global Dataset of thousands of highly-upvoted Python solutions.
 - **Sleek React Frontend**: A premium, dark-mode (Vercel/Linear-inspired) UI built with React, TypeScript, and Vite.
 - **Real-Time Streaming**: Tokens stream directly from the local LLM to the UI without blocking, utilizing Server-Sent Events (SSE).
 - **Context Inspection**: A polished sliding right-panel allows you to natively inspect the exact retrieved vectors (the "sources") and telemetry metrics that the LLM used to formulate your hint.
 
-## 🏗 Architecture
+## Architecture
 - **Backend (`/backend`)**: FastAPI, Python 3.12, Uvicorn, ChromaDB, Ollama.
 - **Frontend (`/frontend`)**: React 18, TypeScript, Vite, `lucide-react`, `react-markdown`.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 - Python 3.11+
@@ -59,5 +59,5 @@ npm run dev
 
 The React interactive UI will be immediately available at `http://localhost:5173`.
 
-## 📄 License
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
